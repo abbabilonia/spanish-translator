@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+body {
+    background-color: gray;
+    overflow: hidden;
+}
+
+.logo-container {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    background-color: white;
+
+}
+
+.logo-container .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container .header h4 {
+    font-size: 30px;
+}
+
+.logo-container .logo-image {
+    position: relative;
+    height: 55px;
+    width: 55px;
+    margin-right: 16px;
+}
+
+.jumbotron {
+    height: calc(90vh - 90px);
+    font-size: 13px;
+}
+
+.main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.button-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.language-container {
+    flex: 50%;
+    margin: 5px 5px;
+    height: 100%;
+}
+
+.dropdown-menu label {
+    cursor: pointer;
+}
+
+.button-holder {
+    margin-top: -20px;
+}
+
+button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 20px;
+    width: auto;
+    background-color: #6166ED;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+#to-lang, #from-lang {
+    font-size: 20px;
+    background-color: white;
+}
+
+.form-group label {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.fa-microphone,
+.fa-volume-up {
+    position: absolute;
+    top: 590px;
+    padding-left: 15px;
+    color: grey;
+}
+
+.fa-microphone:active,
+.fa-volume-up:active {
+    transform: scale(0.9);
+}
+
+.fa-exchange-alt {
+    position: relative;
+    top: 240px;
+    margin: 10px;
+    font-size: 26px;
+}

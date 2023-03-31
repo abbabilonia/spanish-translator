@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Foreign Language Translator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.dropdown').each(function (key, dropdown) {
+                var $dropdown = $(dropdown);
+                $dropdown.find('.dropdown-menu a').on('click', function () {
+                    $dropdown.find('button').text($(this).text()).append(' <span class="caret"></span>');
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="App">
+        <div class="logo-container">
+            <div class="header">
+                <img class="logo-image" src="static/logo.png" alt="" />
+                <h4>FOREIGN LANGUAGE TRANSLATOR</h4>
+            </div>
+        </div>
+        <div class="container">
+            <div class="jumbotron">
+                <div class="main">
+                    <div class="language-container">
+                        <div class="from-container">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    style="width: 100%; font-size: 20px;">
+                                    Please choose a language.
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <label class="dropdown-item">English</label>
+                                    <label class="dropdown-item">French</label>
+                                    <label class="dropdown-item">Japanase</label>
+                                    <label class="dropdown-item">Korean</label>
+                                    <label class="dropdown-item">Spanish</label>
+                                </div>
+                            </div>
+                            <form class="form-group" id="to-lang-form">
+                                <!-- <div class="form-group"> -->
+                                <label>Text:</label>
+                                <textarea class="form-control" id="to-lang" rows="3" style="width: 100%; height: 350px;"
+                                    name="to-language"></textarea>
+                                <i class="fas fa-microphone"></i>
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                    </div>
+                    <i class="fas fa-exchange-alt"></i>
+
+                    <div class="language-container">
+                        <div class="to-container">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    style="width: 100%; font-size: 20px;">
+                                    Please choose a language.
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <label class="dropdown-item">English</label>
+                                    <label class="dropdown-item">French</label>
+                                    <label class="dropdown-item">Japanase</label>
+                                    <label class="dropdown-item">Korean</label>
+                                    <label class="dropdown-item">Spanish</label>
+                                </div>
+                            </div>
+                            <form action="index.html" class="form-group">
+                                <!-- <div class="form-group"> -->
+                                <label>Translated Text:</label>
+                                <textarea class="form-control" id="from-lang" style="width: 100%; height: 350px;"
+                                    readonly></textarea>
+                                <i class="fas fa-volume-up"></i>
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="button-holder">
+                    <button type="submit" id="translate-button" form="to-lang-form">Translate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const buttonTranslate = document.getElementById('translate-button')
+        $('#translate-button').on('click', function(e) {
+            e.preventDefault()
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                data: JSON.stringify({
+                    to_lang: $("#to-lang").val()
+                }),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    document.getElementById('from-lang').value = data.translation
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
